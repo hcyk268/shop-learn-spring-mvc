@@ -8,7 +8,6 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication(exclude = org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class)
 public class ShopApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ShopApplication.class, args);
 	}
