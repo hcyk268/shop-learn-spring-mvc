@@ -1,5 +1,7 @@
 package com.haipro.shop.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +23,8 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
+        List<User> arrUsers = this.userService.getAllUsersByEmail("test1@nmail.com");
+        System.out.println(arrUsers);
         model.addAttribute("haivar", "Chua co cai gi het a");
         return "test";
     }
