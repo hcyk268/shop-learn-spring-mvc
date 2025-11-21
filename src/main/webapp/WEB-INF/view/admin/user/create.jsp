@@ -125,24 +125,6 @@
                         transform: translateY(-2px);
                         box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
                     }
-
-                    .footer-link {
-                        text-align: center;
-                        margin-top: 1.5rem;
-                    }
-
-                    .footer-link a {
-                        color: rgba(255, 255, 255, 0.9);
-                        text-decoration: none;
-                        font-size: 0.9rem;
-                        font-weight: 500;
-                        transition: opacity 0.2s;
-                    }
-
-                    .footer-link a:hover {
-                        opacity: 1;
-                        text-decoration: underline;
-                    }
                 </style>
             </head>
 
@@ -199,10 +181,6 @@
                                         </div>
                                     </form:form>
                                 </div>
-                            </div>
-
-                            <div class="footer-link">
-                                <a href="/admin/user"><i class="bi bi-arrow-left me-1"></i> Back </a>
                             </div>
                         </div>
                     </div>
