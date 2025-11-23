@@ -43,4 +43,7 @@ public class UserService {
         return haipro;
     }
 
+    public void deleteUserById(long id) {
+        this.userRepository.deleteById(id);
+    }
 }

@@ -7,7 +7,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Table Users</title>
+                <title>List Users</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
                 <!-- Latest compiled JavaScript -->
@@ -50,7 +50,7 @@
                                                 <a class="btn btn-warning" href="/admin/user/update/${user.id}">
                                                     Update
                                                 </a>
-                                                <a class="btn btn-danger">
+                                                <a class="btn btn-danger" href="/admin/user/delete/${user.id}">
                                                     Delete
                                                 </a>
                                             </td>

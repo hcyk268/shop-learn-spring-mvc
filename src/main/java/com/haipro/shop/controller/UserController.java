@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.haipro.shop.service.UserService;
 import com.haipro.shop.domain.User;
+import com.haipro.shop.repository.UserRepository;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,4 +77,18 @@ public class UserController {
         }
         return "redirect:/admin/user";
     }
+
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable long id) {
+        User delu = this.userService.getUserById(id);
+        model.addAttribute("deleteUser", delu);
+        return "admin/user/delete";
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String postDeleteUser(Model model, @ModelAttribute("deleteUser") User deleteUser) {
+        this.userService.deleteUserById(deleteUser.getId());
+        return "redirect:/admin/user";
+    }
+
 }
