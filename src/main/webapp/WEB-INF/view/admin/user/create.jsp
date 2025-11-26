@@ -2,23 +2,18 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-            <!DOCTYPE html>
             <html lang="en">
 
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create New User</title>
-
-                <!-- Google Fonts: Inter -->
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-                    rel="stylesheet">
-                <!-- Bootstrap CSS -->
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                <!-- Bootstrap Icons -->
-                <link rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+                <title>Create User</title>
+                <!-- Theme + Bootstrap -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+                <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
                 <style>
                     :root {
                         --primary-gradient: linear-gradient(135deg, #243949 0%, #517fa4 100%);
@@ -26,13 +21,9 @@
                     }
 
                     body {
-                        font-family: 'Inter', sans-serif;
-                        background: var(--primary-gradient);
+                        font-family: 'Inter', 'Segoe UI', sans-serif;
+                        background: #f5f7fb;
                         min-height: 100vh;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 20px;
                     }
 
                     .main-card {
@@ -128,66 +119,89 @@
                 </style>
             </head>
 
-            <body>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-lg-6 col-xl-5">
-                            <div class="card main-card">
-                                <div class="card-header-custom">
-                                    <div class="icon-wrapper">
-                                        <i class="bi bi-person-plus"></i>
+            <body class="sb-nav-fixed">
+                <jsp:include page="../layout/header.jsp" />
+                <div id="layoutSidenav">
+                    <div id="layoutSidenav_nav">
+                        <jsp:include page="../layout/sidebar.jsp" />
+                    </div>
+                    <div id="layoutSidenav_content">
+                        <div class="container-fluid px-4">
+                            <main>
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8 col-lg-6 col-xl-5">
+                                            <div class="card main-card">
+                                                <div class="card-header-custom">
+                                                    <div class="icon-wrapper">
+                                                        <i class="fas fa-user-plus"></i>
+                                                    </div>
+                                                    <h2>Create Account</h2>
+                                                    <p>Please fill in the details to register a new user</p>
+                                                </div>
+
+                                                <div class="card-body-custom">
+                                                    <form:form method="post" action="/admin/user/create"
+                                                        modelAttribute="newUser">
+
+                                                        <div class="form-floating mb-3">
+                                                            <form:input type="email" class="form-control" id="email"
+                                                                path="email" placeholder="name@example.com" />
+                                                            <label for="email">Email Address</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3">
+                                                            <form:input type="password" class="form-control"
+                                                                id="password" path="password" placeholder="Password" />
+                                                            <label for="password">Password</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3">
+                                                            <form:input type="text" class="form-control" id="phone"
+                                                                path="phone" placeholder="Phone Number" />
+                                                            <label for="phone">Phone Number</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3">
+                                                            <form:input type="text" class="form-control" id="fullname"
+                                                                path="fullname" placeholder="Full Name" />
+                                                            <label for="fullname">Full Name</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-4">
+                                                            <form:input type="text" class="form-control" id="address"
+                                                                path="address" placeholder="Address" />
+                                                            <label for="address">Address</label>
+                                                        </div>
+
+                                                        <div class="d-grid">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-submit btn-lg">
+                                                                Create User
+                                                            </button>
+                                                        </div>
+                                                    </form:form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h2>Create Account</h2>
-                                    <p>Please fill in the details to register a new user</p>
+
                                 </div>
-
-                                <div class="card-body-custom">
-                                    <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
-
-                                        <div class="form-floating mb-3">
-                                            <form:input type="email" class="form-control" id="email" path="email"
-                                                placeholder="name@example.com" />
-                                            <label for="email">Email Address</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <form:input type="password" class="form-control" id="password"
-                                                path="password" placeholder="Password" />
-                                            <label for="password">Password</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <form:input type="text" class="form-control" id="phone" path="phone"
-                                                placeholder="Phone Number" />
-                                            <label for="phone">Phone Number</label>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
-                                            <form:input type="text" class="form-control" id="fullname" path="fullname"
-                                                placeholder="Full Name" />
-                                            <label for="fullname">Full Name</label>
-                                        </div>
-
-                                        <div class="form-floating mb-4">
-                                            <form:input type="text" class="form-control" id="address" path="address"
-                                                placeholder="Address" />
-                                            <label for="address">Address</label>
-                                        </div>
-
-                                        <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary btn-submit btn-lg">
-                                                Create User
-                                            </button>
-                                        </div>
-                                    </form:form>
-                                </div>
-                            </div>
+                            </main>
                         </div>
+                        <jsp:include page="../layout/footer.jsp" />
                     </div>
                 </div>
-
-                <!-- Bootstrap JS -->
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="<c:url value='/js/scripts.js'/>"></script>
+                <script src="<c:url value='/js/chart-area-demo.js'/>"></script>
+                <script src="<c:url value='/js/chart-bar-demo.js'/>"></script>
+                <script src="<c:url value='/js/datatables-simple-demo.js'/>"></script>
             </body>
 
             </html>

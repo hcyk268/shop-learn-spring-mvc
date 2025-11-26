@@ -1,4 +1,4 @@
-package com.haipro.shop.controller;
+package com.haipro.shop.controller.admin;
 
 import java.util.List;
 

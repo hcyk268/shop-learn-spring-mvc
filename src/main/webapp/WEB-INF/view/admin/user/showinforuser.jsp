@@ -1,23 +1,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-            <!DOCTYPE html>
+
             <html lang="en">
 
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>User Profile - ${userdetail.fullname}</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                <title>User Profile</title>
+                <!-- Theme + Bootstrap -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+                <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
                 <style>
                     body {
-                        background-color: #f0f2f5;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        background-color: #f5f7fb;
+                        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         min-height: 100vh;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
                     }
 
                     .profile-card {
@@ -189,58 +190,82 @@
                 </style>
             </head>
 
-            <body>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-lg-6">
-                            <div class="card profile-card">
-                                <div class="card-header-custom">
-                                    <h3 class="mb-0 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.2);">User
-                                        Profile</h3>
-                                    <div class="avatar-circle">
-                                        <!-- Using UI Avatars for dynamic initials based on name -->
-                                        <img src="https://ui-avatars.com/api/?name=${userdetail.fullname}&background=random&size=128&bold=true"
-                                            alt="User Avatar" class="avatar-img">
+            <body class="sb-nav-fixed">
+                <jsp:include page="../layout/header.jsp" />
+                <div id="layoutSidenav">
+                    <div id="layoutSidenav_nav">
+                        <jsp:include page="../layout/sidebar.jsp" />
+                    </div>
+                    <div id="layoutSidenav_content">
+                        <div class="container-fluid px-4">
+                            <main>
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8 col-lg-6">
+                                            <div class="card profile-card">
+                                                <div class="card-header-custom">
+                                                    <h3 class="mb-0 text-white"
+                                                        style="text-shadow: 0 2px 4px rgba(0,0,0,0.2);">User
+                                                        Profile</h3>
+                                                    <div class="avatar-circle">
+                                                        <img src="https://ui-avatars.com/api/?name=${userdetail.fullname}&background=random&size=128&bold=true"
+                                                            alt="User Avatar" class="avatar-img">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body card-body-custom">
+                                                    <div class="text-center mb-4">
+                                                        <h2 class="user-name h3">${userdetail.fullname}</h2>
+                                                        <span class="user-id">ID: ${userdetail.id}</span>
+                                                    </div>
+                                                    <div class="info-list">
+                                                        <div class="info-item">
+                                                            <span class="info-label"><i class="fas fa-envelope"></i>
+                                                                Email</span>
+                                                            <span class="info-value">${userdetail.email}</span>
+                                                        </div>
+                                                        <div class="info-item">
+                                                            <span class="info-label"><i class="fas fa-key"></i>
+                                                                Password</span>
+                                                            <span class="info-value">${userdetail.password}</span>
+                                                        </div>
+                                                        <div class="info-item">
+                                                            <span class="info-label"><i class="fas fa-phone"></i>
+                                                                Phone</span>
+                                                            <span class="info-value">${userdetail.phone}</span>
+                                                        </div>
+                                                        <div class="info-item">
+                                                            <span class="info-label"><i
+                                                                    class="fas fa-map-marker-alt"></i>
+                                                                Address</span>
+                                                            <span class="info-value">${userdetail.address}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <a href="javascript:history.back()"
+                                                            class="btn btn-secondary btn-back text-white text-decoration-none">
+                                                            <i class="fas fa-arrow-left me-2"></i> Back
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-body card-body-custom">
-                                    <div class="text-center mb-4">
-                                        <h2 class="user-name h3">${userdetail.fullname}</h2>
-                                        <span class="user-id">ID: ${userdetail.id}</span>
-                                    </div>
-                                    <div class="info-list">
-                                        <div class="info-item">
-                                            <span class="info-label"><i class="fas fa-envelope"></i> Email</span>
-                                            <span class="info-value">${userdetail.email}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label"><i class="fas fa-key"></i> Password</span>
-                                            <span class="info-value">${userdetail.password}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label"><i class="fas fa-phone"></i> Phone</span>
-                                            <span class="info-value">${userdetail.phone}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label"><i class="fas fa-map-marker-alt"></i>
-                                                Address</span>
-                                            <span class="info-value">${userdetail.address}</span>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="javascript:history.back()"
-                                            class="btn btn-secondary btn-back text-white text-decoration-none">
-                                            <i class="fas fa-arrow-left me-2"></i> Back
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            </main>
                         </div>
+                        <jsp:include page="../layout/footer.jsp" />
                     </div>
                 </div>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+                    crossorigin="anonymous"></script>
+                <script src="<c:url value='/js/scripts.js'/>"></script>
+                <script src="<c:url value='/js/chart-area-demo.js'/>"></script>
+                <script src="<c:url value='/js/chart-bar-demo.js'/>"></script>
+                <script src="<c:url value='/js/datatables-simple-demo.js'/>"></script>
             </body>
-
-            </html>
 
             </html>
